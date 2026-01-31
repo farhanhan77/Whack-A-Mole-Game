@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SINBE GAME BY PA'ANG</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1><i class="fas fa-gamepad"></i> WHACK-A-MOLE</h1>
+            <p class="subtitle">CUAYO X SINBE</p>
+        </div>
+
+        <!-- Main Menu -->
+        <div id="main-menu" class="screen active">
+            <div class="menu-content">
+                <div class="pixel-art-title">
+                    <div class="pixel-character">
+                        <div class="pixel-eye"></div>
+                        <div class="pixel-eye right"></div>
+                        <div class="pixel-mouth"></div>
+                    </div>
+                    <h2>WHACK-A-MOLE</h2>
+                </div>
+                
+                <div class="game-info">
+                    <div class="info-box">
+                        <h3><i class="fas fa-star"></i> PERATURAN</h3>
+                        <ul>
+                            <li><span class="good">CUAYO</span> = +10 POIN</li>
+                            <li><span class="bad">SINBE</span> = -10 POIN</li>
+                            <li>WAKTU: <span class="time">90 DETIK</span></li>
+                            <li>KESEMPATAN: <span class="chance">3 KALI</span></li>
+                            <li>PUKUL SINBE 3X = GAME OVER</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="character-showcase">
+                        <div class="char good-char">
+                            <img src="img/SPEAKI_SENYUM_1.webp" alt="character" class="char-img">
+                            <p>CUAYO</p>
+                            <span class="score">+10</span>
+                        </div>
+                        <div class="char bad-char">
+                            <img src="img/sinbe11.webp" alt="character" class="char-img">
+                            <p>SINBE</p>
+                            <span class="score">-10</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="menu-buttons">
+                    <button id="start-game" class="btn pixel-btn">
+                        <i class="fas fa-play"></i> MULAI GAME
+                    </button>
+                    <button id="how-to-play" class="btn pixel-btn secondary">
+                        <i class="fas fa-book"></i> CARA MAIN
+                    </button>
+                    <div class="high-score-display">
+                        <i class="fas fa-trophy"></i>
+                        SKOR TERTINGGI: <span id="high-score">0</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Game Screen -->
+        <div id="game-screen" class="screen">
+            <div class="game-header">
+                <div class="stats">
+                    <div class="stat">
+                        <i class="fas fa-clock"></i>
+                        <span id="time">60</span>s
+                    </div>
+                    <div class="stat">
+                        <i class="fas fa-star"></i>
+                        SKOR: <span id="score">0</span>
+                    </div>
+                    <div class="stat">
+                        <i class="fas fa-heart"></i>
+                        NYAWA: <span id="lives">3</span>
+                    </div>
+                    <div class="stat">
+                        <i class="fas fa-skull-crossbones"></i>
+                        SINBE: <span id="bad-hits">0</span>/3
+                    </div>
+                </div>
+            </div>
+
+            <div class="game-board">
+                <img id="hammer" src="img/TANGAN_AUTOR.webp" alt="Palu" class="hammer">
+                <div class="holes-container">
+                    <!-- Lubang akan dibuat dengan JavaScript -->
+                </div>
+            </div>
+
+            <div class="game-controls">
+                <button id="pause-game" class="btn pixel-btn small">
+                    <i class="fas fa-pause"></i> JEDA
+                </button>
+                <button id="back-menu" class="btn pixel-btn small secondary">
+                    <i class="fas fa-home"></i> MENU
+                </button>
+                <div class="sound-control">
+                    <i class="fas fa-volume-up" id="sound-icon"></i>
+                    <input type="range" id="volume-slider" min="0" max="100" value="70" aria-label="Volume">
+                </div>
+            </div>
+        </div>
+
+        <!-- How to Play Screen -->
+        <div id="how-to-screen" class="screen">
+            <div class="how-to-content">
+                <h2><i class="fas fa-book"></i> CARA MAIN</h2>
+                <div class="instructions">
+                    <div class="instruction">
+                        <div class="step-number">1</div>
+                        <p>GERAKKAN MOUSE UNTUK MENGENDALIKAN PALU</p>
+                    </div>
+                    <div class="instruction">
+                        <div class="step-number">2</div>
+                        <p>KLIK UNTUK MEMUKUL CUAYO MUNCUL</p>
+                    </div>
+                    <div class="instruction">
+                        <div class="step-number">3</div>
+                        <p>CUAYO = <span class="good">+10 POIN</span></p>
+                    </div>
+                    <div class="instruction">
+                        <div class="step-number">4</div>
+                        <p>SINBE = <span class="bad">-10 POIN</span></p>
+                    </div>
+                    <div class="instruction">
+                        <div class="step-number">5</div>
+                        <p>HINDARI MEMUKUL 3 SINBE ATAU GAME OVER</p>
+                    </div>
+                    <div class="instruction">
+                        <div class="step-number">6</div>
+                        <p>MAKSIMALKAN POIN DALAM 90 DETIK!</p>
+                    </div>
+                </div>
+                <button id="back-from-howto" class="btn pixel-btn">
+                    <i class="fas fa-arrow-left"></i> KEMBALI
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Game Over Modal -->
+    <div id="game-over-modal" class="modal">
+        <div class="modal-content pixel-modal">
+            <div class="modal-header">
+                <h2><i class="fas fa-skull"></i> GAME OVER</h2>
+            </div>
+            <div class="modal-body">
+                <div class="result-stats">
+                    <div class="result-stat">
+                        <i class="fas fa-star"></i>
+                        <p>SKOR AKHIR</p>
+                        <span id="final-score">0</span>
+                    </div>
+                    <div class="result-stat">
+                        <i class="fas fa-trophy"></i>
+                        <p>SKOR TERTINGGI</p>
+                        <span id="best-score">0</span>
+                    </div>
+                    <div class="result-stat">
+                        <i class="fas fa-clock"></i>
+                        <p>WAKTU TERSISA</p>
+                        <span id="time-left">0</span>s
+                    </div>
+                </div>
+                <div class="game-over-message" id="game-over-message">
+                    <!-- Pesan game over akan dimasukkan di sini -->
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button id="play-again" class="btn pixel-btn">
+                    <i class="fas fa-redo"></i> MAIN LAGI
+                </button>
+                <button id="back-to-menu" class="btn pixel-btn secondary">
+                    <i class="fas fa-home"></i> KE MENU
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Audio Elements -->
+    <audio id="mole-appear-sound" preload="auto">
+        <source src="sounds/massobeats.mp3" type="audio/mpeg">
+    </audio>
+    <audio id="good-spawn-sound" preload="auto">
+        <source src="sounds/murugorureziru.mp3" type="audio/mpeg">
+    </audio>
+    <audio id="good-hit-sound" preload="auto">
+        <source src="sounds/uaa.mp3" type="audio/mpeg">
+    </audio>
+    <audio id="bad-spawn-sound" preload="auto">
+        <source src="sounds/Proyek Baru 1 [0F666F5].mp3" type="audio/mpeg">
+    </audio>
+    <audio id="bad-hit-sound" preload="auto">
+        <source src="sounds/a.mp3" type="audio/mpeg">
+    </audio>
+    <audio id="bg-music" loop preload="auto">
+        <source src="sounds/ssstik.io_@kibe_by_1769651613315.mp3" type="audio/mpeg">
+    </audio>
+
+    <script src="script.js"></script>
+</body>
+</html>
